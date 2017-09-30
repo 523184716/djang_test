@@ -1,0 +1,28 @@
+{% extends 'master/layout.html' %}
+{% load helphtml %}
+{% block content %}
+    <h1>{{user}}</h1>
+    <table border="1">
+        {% for data in data %}
+            <tr>
+                <td>{{data.id}}</td>
+                <td>{% mymethod data.id%}</td>
+                <td>{{data.hostname}}</td>
+                <td>{{data.create_date|date:"Y-m-d H:i:s"}}</td>
+                <td>{{data.update_date|date:"Y-m-d H:i:s"}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% if user %}
+        <h2>真</h2>
+    {% else %}
+        <h2>假</h2>
+    {% endif %}
+    {% ifequal user 'alex' %}
+        <h3>alex</h3>
+    {% else %}
+        <h3>非alex</h3>
+    {% endifequal %}
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "layout/cmdb.html" %}
+
+{% block content %}
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">新建</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 基础信息 <span class="tpl-form-line-small-title">Base</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                  
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="encoding" class="am-u-sm-3 am-form-label">资产编码 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="encoding" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="displayencoding" class="am-u-sm-3 am-form-label">显示器编码 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="displayencoding" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="configuration" class="am-u-sm-3 am-form-label">配置 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="configuration" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="status" class="am-u-sm-3 am-form-label">存放位置 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="status" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="usestaus" class="am-u-sm-3 am-form-label">使用情况“1正在使用，0闲置” </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="usestaus" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="updated_time" class="am-u-sm-3 am-form-label">更新记录的时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="updated_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="note" class="am-u-sm-3 am-form-label">备注 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="note" >
+                                    </div>
+                                </div>
+            
+<!--                                 <div class="am-form-group">                              
+                                    <label for="user-name"  id="name" class="am-u-sm-3 am-form-label">上线名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="name" >
+                                    </div>
+                                </div> -->
+
+
+
+                                <div class="am-form-group">
+                                  <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" style="display:inline;float:left" class="am-btn am-btn-primary tpl-btn-bg-color-success" id="submit" >确定</button>
+                                    <button type="button" style="display:inline;float:left;margin-left:50px" class="am-btn am-btn-default tpl-btn-bg-color-success" id="cancel">取消</button>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+<script>
+
+$(function() {
+
+$("#cancel").click(function(){ 
+  location.href="pre_pc";
+});
+
+$('#submit').click(function () {
+
+// var checkParm=new Array("name","relate_hostid","download_url");
+var data = $('form :input').serializeArray();
+// var emptyArr = new Array();
+// $.each( data, function(i, field){
+//     if ($.inArray(field.name, checkParm) != -1 ) {
+//         if (field.value == '' ) {
+//            var temp = $("#"+field.name+"").html().trim();
+//             emptyArr.push(temp); 
+//         }       
+//     }
+// });
+
+// if (emptyArr.length != 0 ) {
+//     $("#msgtips").html(emptyArr + '不能为空!');  
+//     $('#my-alert').modal('open');
+//     return ;     
+// }
+
+$.ajax({
+ type: "POST",
+ url: "api/pre_pc",
+ cache: false,
+ data: data,
+ dataType: "json",
+ complete: function(res){
+    console.log(res);
+    if (res.status != 200 ) {
+        $("#msgtips").html('请求失败,请再次尝试,超过三次,请联系管理员!');  
+        $('#my-alert').modal('open');
+    }
+    
+    if ( res.responseJSON.rc == 1 ) {
+        location.href="pre_pc";
+    }else{
+        $("#msgtips").html('新建失败!');  
+        $('#my-alert').modal('open');       
+    }
+}
+});
+ 
+});
+
+});     
+
+</script>
+{% endblock %}
+    

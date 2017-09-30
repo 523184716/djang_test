@@ -1,0 +1,425 @@
+{% extends "layout/cmdb.html" %}
+
+{% block content %}
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">新建</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 基础信息 <span class="tpl-form-line-small-title">Base</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                  
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="yewu_name" class="am-u-sm-3 am-form-label">业务管理 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="yewu_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="depart_name" class="am-u-sm-3 am-form-label">分区名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="depart_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="server_name" class="am-u-sm-3 am-form-label">服务器名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="server_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="external_ip" class="am-u-sm-3 am-form-label">公网IP </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="external_ip" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="network_ip" class="am-u-sm-3 am-form-label">内网IP </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="network_ip" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="cpu" class="am-u-sm-3 am-form-label">CPU </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="cpu" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="mem" class="am-u-sm-3 am-form-label">内存 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="mem" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="disk" class="am-u-sm-3 am-form-label">数据盘 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="disk" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="server_id" class="am-u-sm-3 am-form-label">服务器ID </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="server_id" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="mirr_id" class="am-u-sm-3 am-form-label">镜像ID </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="mirr_id" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="pro_type" class="am-u-sm-3 am-form-label">应用类型 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_type" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="config_dir" class="am-u-sm-3 am-form-label">配置目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="config_dir" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="pro_dir" class="am-u-sm-3 am-form-label">工程目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_dir" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="log_dir" class="am-u-sm-3 am-form-label">日志路径 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="log_dir" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="pro_key" class="am-u-sm-3 am-form-label">进程关键词 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_key" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="pro_init" class="am-u-sm-3 am-form-label">启动脚本 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_init" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="pro_port" class="am-u-sm-3 am-form-label">启动端口 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_port" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="system_type" class="am-u-sm-3 am-form-label">操作系统 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="system_type" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="entrance_server" class="am-u-sm-3 am-form-label">所属主机 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="entrance_server" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="note" class="am-u-sm-3 am-form-label">备注 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="note" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="status" class="am-u-sm-3 am-form-label">状态 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="status" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="created_time" class="am-u-sm-3 am-form-label">创建时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="created_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="updated_time" class="am-u-sm-3 am-form-label">最后更新记录时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="updated_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="groupby" class="am-u-sm-3 am-form-label">分组名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="groupby" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="local_name" class="am-u-sm-3 am-form-label">识别名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="local_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="app_key" class="am-u-sm-3 am-form-label">应用唯一关键词 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="app_key" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="is_deloy_dir" class="am-u-sm-3 am-form-label">发布目录判断 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="is_deloy_dir" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="container_dir" class="am-u-sm-3 am-form-label">容器目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="container_dir" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="java_versoin" class="am-u-sm-3 am-form-label">java版本 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_versoin" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="java_home" class="am-u-sm-3 am-form-label">java的Home目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_home" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="java_confirm" class="am-u-sm-3 am-form-label">java版本确认 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_confirm" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="auto_deloy" class="am-u-sm-3 am-form-label">是否加入自动发布 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="auto_deloy" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="backupdir_same_level" class="am-u-sm-3 am-form-label">备份目录是否和pro_dir同级 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="backupdir_same_level" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploydir_same_level" class="am-u-sm-3 am-form-label">发布目录是否和pro_dir同级 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploydir_same_level" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="huanjin_name" class="am-u-sm-3 am-form-label">环境管理 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="huanjin_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="jifang_name" class="am-u-sm-3 am-form-label">机房管理 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="jifang_name" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="env" class="am-u-sm-3 am-form-label">环境 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="env" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="configure_file_list" class="am-u-sm-3 am-form-label">配置文件列表 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="configure_file_list" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="configure_file_status" class="am-u-sm-3 am-form-label">配置文件状态 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="configure_file_status" >
+                                    </div>
+                                </div>
+            
+<!--                                 <div class="am-form-group">                              
+                                    <label for="user-name"  id="name" class="am-u-sm-3 am-form-label">上线名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="name" >
+                                    </div>
+                                </div> -->
+
+
+
+                                <div class="am-form-group">
+                                  <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" style="display:inline;float:left" class="am-btn am-btn-primary tpl-btn-bg-color-success" id="submit" >确定</button>
+                                    <button type="button" style="display:inline;float:left;margin-left:50px" class="am-btn am-btn-default tpl-btn-bg-color-success" id="cancel">取消</button>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+<script>
+
+$(function() {
+
+$("#cancel").click(function(){ 
+  location.href="pre_server_detail";
+});
+
+$('#submit').click(function () {
+
+// var checkParm=new Array("name","relate_hostid","download_url");
+var data = $('form :input').serializeArray();
+// var emptyArr = new Array();
+// $.each( data, function(i, field){
+//     if ($.inArray(field.name, checkParm) != -1 ) {
+//         if (field.value == '' ) {
+//            var temp = $("#"+field.name+"").html().trim();
+//             emptyArr.push(temp); 
+//         }       
+//     }
+// });
+
+// if (emptyArr.length != 0 ) {
+//     $("#msgtips").html(emptyArr + '不能为空!');  
+//     $('#my-alert').modal('open');
+//     return ;     
+// }
+
+$.ajax({
+ type: "POST",
+ url: "api/pre_server_detail",
+ cache: false,
+ data: data,
+ dataType: "json",
+ complete: function(res){
+    console.log(res);
+    if (res.status != 200 ) {
+        $("#msgtips").html('请求失败,请再次尝试,超过三次,请联系管理员!');  
+        $('#my-alert').modal('open');
+    }
+    
+    if ( res.responseJSON.rc == 1 ) {
+        location.href="pre_server_detail";
+    }else{
+        $("#msgtips").html('新建失败!');  
+        $('#my-alert').modal('open');       
+    }
+}
+});
+ 
+});
+
+});     
+
+</script>
+{% endblock %}
+    

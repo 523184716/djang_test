@@ -1,0 +1,996 @@
+{% extends "layout/cmdb.html" %}
+
+    {% block content %}
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="set-filed">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">自定义字段</div>
+    <div class="am-modal-bd">
+     
+     <div class="am-g am-text-left">
+
+      <div class="am-u-sm-4" style="margin-left:6%" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="id" class="filed" commet="序号" data-am-ucheck name="checkfield"> 序号
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="yewu_name" class="filed" commet="业务管理" data-am-ucheck name="checkfield"> 业务管理
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="depart_name" class="filed" commet="分区名称" data-am-ucheck name="checkfield"> 分区名称
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="server_name" class="filed" commet="服务器名称" data-am-ucheck name="checkfield"> 服务器名称
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="external_ip" class="filed" commet="公网IP" data-am-ucheck name="checkfield"> 公网IP
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="network_ip" class="filed" commet="内网IP" data-am-ucheck name="checkfield"> 内网IP
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="cpu" class="filed" commet="CPU" data-am-ucheck name="checkfield"> CPU
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="mem" class="filed" commet="内存" data-am-ucheck name="checkfield"> 内存
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="disk" class="filed" commet="数据盘" data-am-ucheck name="checkfield"> 数据盘
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="server_id" class="filed" commet="服务器ID" data-am-ucheck name="checkfield"> 服务器ID
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="mirr_id" class="filed" commet="镜像ID" data-am-ucheck name="checkfield"> 镜像ID
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="pro_type" class="filed" commet="应用类型" data-am-ucheck name="checkfield"> 应用类型
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="config_dir" class="filed" commet="配置目录" data-am-ucheck name="checkfield"> 配置目录
+                </label>
+                   
+      </div>
+
+      <div class="am-u-sm-3" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="pro_dir" class="filed" commet="工程目录" data-am-ucheck name="checkfield"> 工程目录
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="log_dir" class="filed" commet="日志路径" data-am-ucheck name="checkfield"> 日志路径
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="pro_key" class="filed" commet="进程关键词" data-am-ucheck name="checkfield"> 进程关键词
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="pro_init" class="filed" commet="启动脚本" data-am-ucheck name="checkfield"> 启动脚本
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="pro_port" class="filed" commet="启动端口" data-am-ucheck name="checkfield"> 启动端口
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="system_type" class="filed" commet="操作系统" data-am-ucheck name="checkfield"> 操作系统
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="entrance_server" class="filed" commet="所属主机" data-am-ucheck name="checkfield"> 所属主机
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="note" class="filed" commet="备注" data-am-ucheck name="checkfield"> 备注
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="status" class="filed" commet="状态" data-am-ucheck name="checkfield"> 状态
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="created_time" class="filed" commet="创建时间" data-am-ucheck name="checkfield"> 创建时间
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="updated_time" class="filed" commet="最后更新记录时间" data-am-ucheck name="checkfield"> 最后更新记录时间
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="groupby" class="filed" commet="分组名称" data-am-ucheck name="checkfield"> 分组名称
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="local_name" class="filed" commet="识别名称" data-am-ucheck name="checkfield"> 识别名称
+                </label>
+                    
+      </div>  
+
+      <div class="am-u-sm-3" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="app_key" class="filed" commet="应用唯一关键词" data-am-ucheck name="checkfield"> 应用唯一关键词
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="is_deloy_dir" class="filed" commet="发布目录判断" data-am-ucheck name="checkfield"> 发布目录判断
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="container_dir" class="filed" commet="容器目录" data-am-ucheck name="checkfield"> 容器目录
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="java_versoin" class="filed" commet="java版本" data-am-ucheck name="checkfield"> java版本
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="java_home" class="filed" commet="java的Home目录" data-am-ucheck name="checkfield"> java的Home目录
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="java_confirm" class="filed" commet="java版本确认" data-am-ucheck name="checkfield"> java版本确认
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="auto_deloy" class="filed" commet="是否加入自动发布" data-am-ucheck name="checkfield"> 是否加入自动发布
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="backupdir_same_level" class="filed" commet="备份目录是否和pro_dir同级" data-am-ucheck name="checkfield"> 备份目录是否和pro_dir同级
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="deploydir_same_level" class="filed" commet="发布目录是否和pro_dir同级" data-am-ucheck name="checkfield"> 发布目录是否和pro_dir同级
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="huanjin_name" class="filed" commet="环境管理" data-am-ucheck name="checkfield"> 环境管理
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="jifang_name" class="filed" commet="机房管理" data-am-ucheck name="checkfield"> 机房管理
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="env" class="filed" commet="环境" data-am-ucheck name="checkfield"> 环境
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="configure_file_list" class="filed" commet="配置文件列表" data-am-ucheck name="checkfield"> 配置文件列表
+                </label>
+                
+
+                    <label class="am-checkbox">
+                      <input type="checkbox" value="configure_file_status" class="filed" commet="配置文件状态" data-am-ucheck name="checkfield"> 配置文件状态
+                    </label>
+                    
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <div class="am-modal-footer">
+    <span class="am-modal-btn" id="set-filed-sure">确定</span>
+    <span class="am-modal-btn">取消</span>
+  </div>
+</div>
+</div>
+
+
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+      <div class="am-modal-dialog">
+        <div class="am-modal-hd">提示</div>
+        <div class="am-modal-bd">
+           确定要删除选中的记录？
+      </div>
+      <div class="am-modal-footer">
+          <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+          <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      </div>
+    </div>
+    </div>
+
+
+            <div class="tpl-content-wrapper">
+                <div class="row-content am-cf">
+                    <div class="row">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">列表</div>
+
+
+                                </div>
+                                <div class="widget-body  am-fr" id="background">
+
+                                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                        <div class="am-form-group">
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <button type="button" class="am-btn am-btn-default am-btn-success" id="host-create" ><span class="am-icon-plus"></span> 新增</button>
+                                                    <button type="button" id="delete" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                                    <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-upload"></span> 导入 </button>
+                                                    <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-download"></span> 导出 </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
+                                        <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                                            <input type="text" class="am-form-field am-input-sm" id="searchval" placeholder="搜索" value= 
+                                              {% if data.search != False  %}
+                                              {{ data.search }}
+                                              {% endif %}
+                                              >
+                                            <span class="am-input-group-btn">
+                                                <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" id="searchbtn" type="button"></button>
+                                            </span>
+                                            <span class="am-input-group-btn">
+                                                <button class="am-btn  am-btn-default am-btn-secondary tpl-table-list-field am-icon-cog" type="button" style="margin-left:5px" id="set-fileds"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-sm-12 am-scrollable-horizontal">
+                                        <input type="hidden" id="limit" value="{{ data.limit }}">
+                                        <input type="hidden" id="pages" value="{{ data.pages }}">
+                                        <input type="hidden" id="search" value="{{ data.search }}">
+                                        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                            <thead>
+                                                <tr>
+                                                <th>
+                                                    <label class="am-checkbox">
+                                                      <input type="checkbox" id="SelectAll" value="" data-am-ucheck class="checkbox"> 
+                                                    </label>
+                                                </th>
+                                                    
+                                       {% if  session.has_key('pre_server_detail_fields')  %}
+                                              {% for th_title in session['pre_server_detail_filedcns'] %}
+                                                      <th class="am-text-middle th-title" >{{th_title}}</th>
+                                              {% endfor %}
+                                        {% else %}
+                                            
+                                                    <th class="am-text-middle th-title" >序号</th>
+
+                                                    <th class="am-text-middle th-title" >业务管理</th>
+
+                                                    <th class="am-text-middle th-title" >分区名称</th>
+
+                                                    <th class="am-text-middle th-title" >服务器名称</th>
+
+                                                    <th class="am-text-middle th-title" >公网IP</th>
+                                        {% endif %}
+    
+                                                    <th class="am-text-middle">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                  
+                                           {% if  session.has_key('pre_server_detail_fields')  %}
+                                                  {% for item in data['pre_server_detail'] %}
+                                                  <tr class="even gradeC">
+                                                      <td class="am-text-middle">
+                                                          <label class="am-checkbox">
+                                                            <input type="checkbox"  name="checkbox" value="{{ item.id }}" data-am-ucheck class="checkbox"> 
+                                                          </label>
+                                                      </td>
+
+                                                      
+                                                     {% if  'id' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.id or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'yewu_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.yewu_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'depart_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.depart_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'server_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.server_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'external_ip' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.external_ip or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'network_ip' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.network_ip or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'cpu' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.cpu or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'mem' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.mem or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'disk' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.disk or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'server_id' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.server_id or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'mirr_id' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.mirr_id or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'pro_type' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.pro_type or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'config_dir' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.config_dir or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'pro_dir' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.pro_dir or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'log_dir' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.log_dir or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'pro_key' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.pro_key or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'pro_init' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.pro_init or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'pro_port' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.pro_port or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'system_type' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.system_type or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'entrance_server' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.entrance_server or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'note' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.note or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'status' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.status or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'created_time' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.created_time or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'updated_time' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.updated_time or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'groupby' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.groupby or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'local_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.local_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'app_key' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.app_key or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'is_deloy_dir' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.is_deloy_dir or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'container_dir' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.container_dir or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'java_versoin' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.java_versoin or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'java_home' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.java_home or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'java_confirm' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.java_confirm or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'auto_deloy' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.auto_deloy or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'backupdir_same_level' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.backupdir_same_level or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'deploydir_same_level' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.deploydir_same_level or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'huanjin_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.huanjin_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'jifang_name' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.jifang_name or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'env' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.env or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'configure_file_list' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.configure_file_list or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'configure_file_status' in  session['pre_server_detail_fields']  %}
+                                                      <td class="am-text-middle">{{ item.configure_file_status or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                      <td class="am-text-middle">
+                                                          <div class="tpl-table-black-operation">
+                                                              <a href="project_edit?id={{ item.id }}">
+                                                                  <i class="am-icon-pencil"></i> 编辑
+                                                              </a>
+                                                              <a href="javascript:;" class="tpl-table-black-operation-del delete-one" dename="{{ item.name or '' }}" value="{{ item.id }}">
+                                                                  <i class="am-icon-trash" ></i> 删除
+                                                              </a>
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                  {% endfor %}
+                                           {% else %}
+                                                 
+
+                                                {% for item in data['pre_server_detail'] %}
+                                                <tr class="even gradeC">
+                                                    <td class="am-text-middle">
+                                                        <label class="am-checkbox">
+                                                          <input type="checkbox"  name="checkbox" value="{{ item.id }}" data-am-ucheck class="checkbox"> 
+                                                        </label>
+                                                    </td>
+
+                                                    
+                                                    <td class="am-text-middle">{{ item.id or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.yewu_name or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.depart_name or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.server_name or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.external_ip or "" }}</td>
+
+                                                    <td class="am-text-middle">
+                                                        <div class="tpl-table-black-operation">
+                                                            <a href="pre_server_detail_edit?id={{ item.id }}">
+                                                                <i class="am-icon-pencil"></i> 编辑
+                                                            </a>
+                                                            <a href="javascript:;" class="tpl-table-black-operation-del delete-one" dename="{{ item.id or '' }}" value="{{ item.id }}">
+                                                                <i class="am-icon-trash" ></i> 删除
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+    
+                                           {% endif %}
+
+    
+
+                                                <!-- more data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="am-u-lg-12 am-cf">
+
+                                        <div class="am-fl changebackground">
+                                            <ul class="am-pagination tpl-pagination changebackground">
+                                                <li class="changebackground" ><a  href="javascript:;" class="have_choice changebackground">已选0项</a></li>
+                                                <li class="changebackground"><a  class="changebackground" href="javascript:;" >共{{ data.count }}项</a></li>
+                                          </ul>
+                                      </div>
+
+                                        <div class="am-fr" id="testcenter">
+                                            <ul class="am-pagination tpl-pagination">
+                                                <li ><a href="javascript:;" class="first_page"><i class="am-icon-step-backward"></i></a></li>
+                                                <li ><a href="javascript:;" class="pre_page"><i class="am-icon-arrow-left"></i></a></li>
+
+                                                <div class="am-btn-group">
+                                                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                                        <div  class="am-form-group tpl-table-list-select" >
+                                                            <select id="js-selected" data-am-selected="{btnWidth: '60px', btnSize: 'sm',dropUp: 1}">
+                                                              {% for page in range(1,data['pages'],1) %}
+                                                              <option value="{{ page }}" 
+                                                              {% if data.page == page  %}
+                                                              selected
+                                                              {% endif %}
+                                                              >&nbsp&nbsp{{ page }}</option>
+                                                              {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+       
+
+
+                                                <li><a href="javascript:;"  class="next_page"><i class="am-icon-arrow-right"></i></a></li>
+                                                <li ><a href="javascript:;" class="last_page"><i class="am-icon-step-forward"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+    <script>
+    var btns = document.querySelectorAll('button');
+    var clipboard = new Clipboard(btns);
+
+    clipboard.on('success', function(e) {
+      console.log(e);
+      $('#my-prompt').modal('close');
+      $("#msgtips").html('复制成功,快去粘贴吧!');  
+      $('#my-alert').modal('open');
+    });
+
+    clipboard.on('error', function(e) {
+        $("#msgtips").html('复制失败,请手工复制!');  
+        $('#my-alert').modal('open'); 
+        console.log(e);
+    });
+
+
+
+    var background_color = $("#background").css("background-color"); 
+    $(".changebackground").css("background-color",background_color);
+
+
+    $(function() {
+      var $selected = $('#js-selected');
+      $selected.on('change', function() {
+        var button_display = $(this).find('option').eq(this.selectedIndex).text();
+        var button_value = $(this).val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        offset = ( button_value - 1  ) * limit ;
+        if (search != 'False'){
+            location.href = "pre_server_detail?offset="+offset+"&page="+button_value+"&limit="+limit+"&search="+search;
+        }else{
+            location.href = "pre_server_detail?offset="+offset+"&page="+button_value+"&limit="+limit;
+        }
+      });
+
+
+    
+    $("#set-fileds").click(function(){ 
+      var obj_th = $(".th-title");//选择所有name="th-title"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var tharr = new Array();
+      for(var i=0;i<obj_th.length;i++){
+        tharr.push($.trim($(obj_th[i]).text()));
+      }
+      console.log(tharr);
+
+      var obj = document.getElementsByName("checkfield");//选择所有name="checkfield"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var no_math_arr = new Array();
+      var commetarr = new Array();
+      for(var i=0;i<obj.length;i++){
+        // console.log($.trim($(obj[i]).attr("commet")));
+        if ($.inArray($.trim($(obj[i]).attr("commet")), tharr) != -1 ) {
+          $(obj[i]).uCheck('check');
+        }else{
+          no_math_arr.push($.trim($(obj[i]).attr("commet")));
+        }
+      }
+
+      if ( no_math_arr.length + obj_th.length != obj.length  ) {
+        console.log("还有字段未被对应,请检查列表名称和表格名称是否正确,默认需要显示字段:"+tharr+"未被显示的字段:"+no_math_arr);
+      }
+      $('#set-filed').modal('open');
+    });
+
+    
+    $("#set-filed-sure").click(function(){ 
+      var obj = document.getElementsByName("checkfield");//选择所有name="checkfield"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var checkarr = new Array();
+      var commetarr = new Array();
+      for(var i=0;i<obj.length;i++){
+        if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+          if (obj[i].value !== '') {
+                s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+                checkarr.push(obj[i].value);
+                commetarr.push($.trim($(obj[i]).attr("commet")));
+              };               
+            }
+      if ( checkarr.length == 0 ) {
+            $("#msgtips").html('自定义字段不能为空!');  
+            $('#my-alert').modal('open'); 
+            return;   
+      }
+      console.log(checkarr);
+      console.log(commetarr);
+
+
+      var $selected = $('#js-selected');
+      var select_value = $selected.val();
+      var limit = $("#limit").val();
+      var search = $("#search").val();
+      var env = $("#env-selected").val();
+      if (search != 'False'){
+      location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&search="+search+"&fields="+checkarr+"&filedcns="+commetarr;
+      }else{
+      location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&fields="+checkarr+"&filedcns="+commetarr;
+      } 
+
+    });
+
+
+    $('.pre_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        page = parseInt(select_value) - 1 ;
+        offset = ( page - 1  ) * limit ;
+        if (page > 1){
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit;    
+            }       
+        }else{
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit;    
+            }   
+        }
+
+    });
+
+    $('.first_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        if (search != 'False'){
+        location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+        }else{
+        location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit;
+        }   
+    });
+
+    $('.next_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var pages = $("#pages").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        max_page = pages - 1 ;
+        page = ( parseInt(select_value) + 1) ;
+        offset = ( page - 1  ) * limit ;
+        if (page < max_page){
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit; 
+            }        
+        }else{
+            offset = ( max_page - 1  ) * limit ;
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+offset+"&page="+max_page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+offset+"&page="+max_page+"&limit="+limit;  
+            }   
+        }
+
+    });
+
+    $('.last_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var pages = $("#pages").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        page = pages - 1 ;
+        offset = ( page - 1  ) * limit ;
+        if (page > 1){
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+offset+"&page="+page+"&limit="+limit;
+            }       
+        }else{
+            if (search != 'False'){
+            location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit;
+            }   
+        } 
+    });
+
+    $('#searchbtn').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#searchval").val();
+        var env = $("#env-selected").val();
+        if (search != 'False'){
+        location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+        }else{
+        location.href = "pre_server_detail?offset="+0+"&page="+1+"&limit="+limit;   
+        }   
+    });
+
+
+    $('#host-create').click(function () {
+        location.href="pre_server_detail_create";  
+    });
+
+
+    //删除选中的值
+    $("#delete").click(function(){ 
+        var obj = document.getElementsByName("checkbox");//选择所有name="checked"的对象，返回数组
+        var s='';//如果这样定义var s;变量s中会默认被赋个null值
+        var checkarr = new Array();
+        for(var i=0;i<obj.length;i++){
+            if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+                if (obj[i].value !== '') {
+                    s+=parseInt(obj[i].value)+',';   //如果选中，将value添加到变量s中
+                    checkarr.push(obj[i].value);
+                };               
+        }
+        if ( checkarr.length == 0 ) {
+                $("#msgtips").html('没有选中任何记录,请重新选择!');  
+                $('#my-alert').modal('open');
+                return ;        
+        } 
+
+        function reload(){
+         location.reload();
+        }
+     
+
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function(options) {
+                $.ajax({
+                 type: "POST",
+                 url: "/api/pre_server_detail/delete",
+                 cache: false,
+                 data: {'ids':s},
+                 dataType: "json",
+                 success: function(res){
+                    console.log(res);
+
+                    if ( res.rc == 1 ) {
+                        $("#msgtips").html('删除成功!');  
+                        $('#my-alert').modal('open');
+                         location.reload();
+                    }else{
+                        $("#msgtips").html('删除失败!');  
+                        $('#my-alert').modal('open');       
+                    }
+
+                },
+                error:function(){     
+                    $("#msgtips").html('删除失败!');  
+                    $('#my-alert').modal('open');     
+                } 
+            });
+
+            },
+            // closeOnConfirm: false,
+          //   onCancel: function() {
+          //     alert('算求，不弄了');
+          // }
+      });
+        
+    }); 
+
+    //删除单个
+    $(".delete-one").click(function(){ 
+        var id = $(this).attr("value");
+        var dename = $(this).attr("dename");
+        if ( id == "" ) {
+            $("#msgtips").html('获取id失败!');  
+            $('#my-alert').modal('open');
+            return;
+        }
+        $('.am-modal-bd').html("确定要删除 [id为"+dename+"] 这条记录？");
+         
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function(options) {
+                $.ajax({
+                 type: "POST",
+                 url: "/api/pre_server_detail/delete",
+                 cache: false,
+                 data: {'ids':id},
+                 dataType: "json",
+                 success: function(res){
+                    console.log(res);
+
+                    if ( res.rc == 1 ) {
+                        $("#msgtips").html('删除成功!');  
+                        $('#my-alert').modal({
+                          relatedTarget: this,
+                          onConfirm: function(options) {
+                             location.reload();
+                          }
+                        });
+                    }else{
+                        $("#msgtips").html('删除失败!');  
+                        $('#my-alert').modal('open');       
+                    }
+
+                },
+                error:function(){     
+                    $("#msgtips").html('删除失败!');  
+                    $('#my-alert').modal('open');     
+                } 
+            });
+
+            },
+            // closeOnConfirm: false,
+          //   onCancel: function() {
+          //     alert('算求，不弄了');
+          // }
+      });
+        
+    }); 
+
+
+    //修改选中的值
+    $(".checkbox").click(function(){ 
+        var obj = document.getElementsByName("checkbox");//选择所有name="checked"的对象，返回数组
+        var s='';//如果这样定义var s;变量s中会默认被赋个null值
+        var checkarr = new Array();
+        for(var i=0;i<obj.length;i++){
+            if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+                if (obj[i].value !== '') {
+                    s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+                    checkarr.push(obj[i].value);
+                };               
+        }
+        $('.have_choice').html("已选"+checkarr.length+"项");
+        $('.am-modal-bd').html("确定要删除选中的"+checkarr.length+"条记录？");
+    });         
+
+    //全选和反选
+    $("#SelectAll").click( 
+    function(){ 
+      if(this.checked){ 
+        $("input[name='checkbox']").each(function(){this.checked=true;}); 
+      }else{ 
+        $("input[name='checkbox']").each(function(){this.checked=false;}); 
+      } 
+    });
+
+
+
+    });
+
+    </script>
+
+
+    {% endblock %}
+    

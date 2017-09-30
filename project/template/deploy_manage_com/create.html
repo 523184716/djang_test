@@ -1,0 +1,305 @@
+{% extends "layout/apycenter.html" %}
+
+{% block content %}
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">新建</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 基础信息 <span class="tpl-form-line-small-title">Base</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                  
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_sys" class="am-u-sm-3 am-form-label">发布系统 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_sys" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_key" class="am-u-sm-3 am-form-label">发布关键词 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_key" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_version" class="am-u-sm-3 am-form-label">发布版本 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_version" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_people" class="am-u-sm-3 am-form-label">发布人 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_people" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_ip" class="am-u-sm-3 am-form-label">内网IP地址 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_ip" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_content" class="am-u-sm-3 am-form-label">发布内容 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_content" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_prodir_before" class="am-u-sm-3 am-form-label">发布前工程目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_prodir_before" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_configdir_before" class="am-u-sm-3 am-form-label">发布前配置目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_configdir_before" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_prodir_after" class="am-u-sm-3 am-form-label">发布后工程目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_prodir_after" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_configdir_after" class="am-u-sm-3 am-form-label">发布后配置目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_configdir_after" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_size" class="am-u-sm-3 am-form-label"> </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_size" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deploy_take" class="am-u-sm-3 am-form-label">发布花费时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deploy_take" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="start_time" class="am-u-sm-3 am-form-label">发布开始时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="start_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="rsync_war_time" class="am-u-sm-3 am-form-label">传包完成时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="rsync_war_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="start_app_time" class="am-u-sm-3 am-form-label">应用开始启动时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="start_app_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="end_time" class="am-u-sm-3 am-form-label">发布结束时间 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="end_time" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="randomStr" class="am-u-sm-3 am-form-label">随机字符串 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="randomStr" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="rollRecord" class="am-u-sm-3 am-form-label">是否是回滚的记录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="rollRecord" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="rollStatus" class="am-u-sm-3 am-form-label">回滚状态 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="rollStatus" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="rollbackNumber" class="am-u-sm-3 am-form-label">回滚次数 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="rollbackNumber" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="processNumber" class="am-u-sm-3 am-form-label">进程数量 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="processNumber" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="status" class="am-u-sm-3 am-form-label">发布状态 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="status" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="note" class="am-u-sm-3 am-form-label">备注 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="note" >
+                                    </div>
+                                </div>
+            
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="deloy_prodir_real_before" class="am-u-sm-3 am-form-label"> </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="deloy_prodir_real_before" >
+                                    </div>
+                                </div>
+            
+<!--                                 <div class="am-form-group">                              
+                                    <label for="user-name"  id="name" class="am-u-sm-3 am-form-label">上线名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="name" >
+                                    </div>
+                                </div> -->
+
+
+
+                                <div class="am-form-group">
+                                  <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" style="display:inline;float:left" class="am-btn am-btn-primary tpl-btn-bg-color-success" id="submit" >确定</button>
+                                    <button type="button" style="display:inline;float:left;margin-left:50px" class="am-btn am-btn-default tpl-btn-bg-color-success" id="cancel">取消</button>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+<script>
+
+$(function() {
+
+$("#cancel").click(function(){ 
+  location.href="deploy_manage_com";
+});
+
+$('#submit').click(function () {
+
+// var checkParm=new Array("name","relate_hostid","download_url");
+var data = $('form :input').serializeArray();
+// var emptyArr = new Array();
+// $.each( data, function(i, field){
+//     if ($.inArray(field.name, checkParm) != -1 ) {
+//         if (field.value == '' ) {
+//            var temp = $("#"+field.name+"").html().trim();
+//             emptyArr.push(temp); 
+//         }       
+//     }
+// });
+
+// if (emptyArr.length != 0 ) {
+//     $("#msgtips").html(emptyArr + '不能为空!');  
+//     $('#my-alert').modal('open');
+//     return ;     
+// }
+
+$.ajax({
+ type: "POST",
+ url: "api/deploy_manage_com",
+ cache: false,
+ data: data,
+ dataType: "json",
+ complete: function(res){
+    console.log(res);
+    if (res.status != 200 ) {
+        $("#msgtips").html('请求失败,请再次尝试,超过三次,请联系管理员!');  
+        $('#my-alert').modal('open');
+    }
+    
+    if ( res.responseJSON.rc == 1 ) {
+        location.href="deploy_manage_com";
+    }else{
+        $("#msgtips").html('新建失败!');  
+        $('#my-alert').modal('open');       
+    }
+}
+});
+ 
+});
+
+});     
+
+</script>
+{% endblock %}
+    

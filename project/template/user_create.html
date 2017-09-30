@@ -1,0 +1,49 @@
+{% extends "nav.html" %}
+{% block head %}
+<script src="{{ url_for('static', filename='js/pydelo/user_create.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="/hosts">主页</a></li>
+        <li class="active">创建用户</li>
+    </ol>
+</div>
+<div class="row">
+    <!--form role="form" action="/host/creation" method="post"-->
+    <div class="row">
+        <div class="col-xs-1">
+            <label>用户名:</label>
+        </div>
+        <div class="col-xs-5">
+            <input class="form-control" type="text" id="name" placeholder="username">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <label>密码:</label>
+        </div>
+        <div class="col-xs-5">
+            <input class="form-control" type="text" id="password">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <label>邮箱:</label>
+        </div>
+        <div class="col-xs-5">
+            <input class="form-control" type="text" id="email">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <label>手机:</label>
+        </div>
+        <div class="col-xs-5">
+            <input class="form-control" type="text" id="phone">
+        </div>
+    </div>
+    <button id="submit" class="btn btn-primary">保存</button>
+    </form>
+</div>
+{% endblock %}

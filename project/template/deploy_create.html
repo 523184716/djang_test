@@ -1,0 +1,75 @@
+{% extends "nav.html" %}
+{% block head %}
+<script src="{{ url_for('static', filename='js/pydelo/deploy_create.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="/deploys">主页</a></li>
+        <li class="active">新建</li>
+    </ol>
+</div>
+<div class="row">
+    <!--form role="form" action="/deploys" method="GET"-->
+    <div class="row">
+        <div class="col-xs-2">
+            <label>项目:</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" id="projects" name="project_id">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <label>发布模式:</label>
+        </div>
+        <div class="col-xs-5">
+            <div class="radio-inline">
+                <input type="radio" name="deploy_mode" value="0" checked>Branch</input>
+            </div>
+            <div class="radio-inline">
+                <input type="radio" name="deploy_mode" value="1">Tag</input>
+            </div>
+        </div>
+    </div>
+    <div class="row deploy_branch_mode">
+        <div class="col-xs-2">
+            <label>选择分支:</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" name="branch" id="branches">
+            </select>
+        </div>
+    </div>
+    <div class="row deploy_branch_mode">
+        <div class="col-xs-2">
+            <label>选择注释:</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" name="commit" id="commits">
+            </select>
+        </div>
+    </div>
+    <div class="row deploy_tag_mode" style="display: none;">
+        <div class="col-xs-2">
+            <label>repo tags:</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" name="tag" id="tags">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <label>发布主机:</label>
+        </div>
+        <div class="col-xs-5">
+            <select class="form-control" name="host_id" id="hosts">
+            </select>
+        </div>
+    </div>
+    <button id="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}

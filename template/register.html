@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/webapp/register/" method="POST">
+        用户名:{{form.username}}
+        <br/>
+        邮箱:{{form.email}}
+        <!--{{form.as_table}}-->
+        <!--//同样的效果-->
+        <br/>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

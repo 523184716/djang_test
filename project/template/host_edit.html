@@ -1,0 +1,537 @@
+{% extends "layout/cmdb.html" %}
+
+{% block content %}
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+
+<!--         <div class="container-fluid am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单 <small>Amaze UI</small></div>
+                    <p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>
+                </div>
+                <div class="am-u-lg-3 tpl-index-settings-button">
+                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">编辑主机</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form" id="update-form">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 基础信息 <span class="tpl-form-line-small-title">Base</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" class="tpl-form-input" id="getid" placeholder="请输入内容" name="id" value={{ data.id or '' }}>                  
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="server_name" class="am-u-sm-3 am-form-label">服务器名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="server_name" value={{ data.server_name or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="external_ip" class="am-u-sm-3 am-form-label">公网IP </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="external_ip" value={{ data.external_ip or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="network_ip" class="am-u-sm-3 am-form-label">内网IP </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="network_ip" value={{ data.network_ip or '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">高级选项</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" id="base-choice" >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="base-hidden" style="display:none">
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">CPU </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="cpu" value={{ data.cpu or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">内存 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="mem" value={{ data.mem or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">数据盘 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="disk" value={{ data.disk or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">服务器ID </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="server_id" value={{ data.server_id or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">镜像ID </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="mirr_id" value={{ data.mirr_id or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">操作系统 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="system_type" value={{ data.system_type or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">所属母机 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="entrance_server" value={{ data.entrance_server  or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">机房管理 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="jifang_name" value={{ data.jifang_name or '' }}>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label"> 环境管理 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="env" value={{ data.env  or ''}}>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 应用信息 <span class="tpl-form-line-small-title">App</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="config_dir" class="am-u-sm-3 am-form-label">配置目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="config_dir" value={{ data.config_dir  or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="pro_dir" class="am-u-sm-3 am-form-label">工程目录 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_dir" value={{ data.pro_dir  or '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="pro_key" class="am-u-sm-3 am-form-label">进程关键词 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_key" value={{ data.pro_key  or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="pro_init" class="am-u-sm-3 am-form-label">启动脚本 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_init" value={{ data.pro_init  or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">高级选项</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" id="app-choice" >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="app-hidden" style="display:none">
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" id="pro_type" class="am-u-sm-3 am-form-label">应用类型 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_type" value={{ data.pro_type  or '' }} >
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">日志路径 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="log_dir" value={{ data.log_dir  or '' }} >
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">启动端口 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="pro_port" value={{ data.pro_port  or '' }} >
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">容器目录 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="container_dir" value={{ data.container_dir  or '' }} >
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">JAVA版本 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_versoin" value={{ data.java_versoin  or '' }} >
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">JAVA目录 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_home" value={{ data.java_home  or '' }} >
+                                            <small>Home目录</small>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">版本确认 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="java_confirm" value={{ data.java_confirm  or '' }} >
+                                            <small>Java版本</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 发布信息 <span class="tpl-form-line-small-title">Deploy</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="app_key" class="am-u-sm-3 am-form-label">关键词 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="app_key" value={{ data.app_key  or '' }}>
+                                        <small>唯一关键词</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="local_name" class="am-u-sm-3 am-form-label">识别名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="local_name" value={{ data.local_name  or '' }} >
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="user-phone" id="is_deloy_dir" class="am-u-sm-3 am-form-label" >目录判断</label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="is_deloy_dir">
+                                          <option value="2"
+                                          {% if data.is_deloy_dir == '2' %}
+                                          selected
+                                          {% endif %}
+                                          >程序配置分离</option>
+                                          <option value="1"
+                                          {% if data.is_deloy_dir == '1'  %}
+                                          selected
+                                          {% endif %}
+                                          >程序包含配置</option>
+                                        </select>
+
+                                    </div>
+                              </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" id="auto_deloy" class="am-u-sm-3 am-form-label">是否开启</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="auto_deloy" 
+                                            {% if data.auto_deloy == '1'  %}
+                                            checked
+                                            {% endif %}
+                                             >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <small>是否开启自动发布</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" id="backupdir_same_level" class="am-u-sm-3 am-form-label">备份同级</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="backupdir_same_level" 
+                                            {% if data.backupdir_same_level == 1  %}
+                                            checked
+                                            {% endif %}
+                                            >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <small>备份目录是否和上次发布目录同级(程序包含配置时)</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" id="deploydir_same_level" class="am-u-sm-3 am-form-label">发布同级</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="deploydir_same_level" 
+                                            {% if data.deploydir_same_level == 1  %}
+                                            checked
+                                            {% endif %}
+                                            >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <small>发布目录是否和上次发布目录同级(程序包含配置时)</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">配置文件列表 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="configure_file_list" value={{ data.configure_file_list  or '' }}>
+                                        <small>以英文逗号做分隔</small>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">配置文件状态</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="configure_file_status" 
+                                            {% if data.configure_file_status == 1  %}
+                                            checked
+                                            {% endif %}
+                                            >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <small>是否开启配置文件列表</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">高级选项</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" id="deploy-choice" >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="deploy-hidden" style="display:none">
+                                    <div class="am-form-group">                              
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">分组名称 </label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="groupby" value={{ data.groupby  or '' }} >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 其他信息 <span class="tpl-form-line-small-title">Other</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">业务管理 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="yewu_name" value={{ data.yewu_name  or '' }}>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">分区名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="depart_name" value={{ data.depart_name  or '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">创建时间</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="" data-am-datepicker=""  name="created_time" readonly="" value={{ data.created_time  or '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">更新时间    </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="" data-am-datepicker="" readonly=""  name="updated_time" value={{ data.updated_time  or '' }}>
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">备注 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="note" value={{ data.note  or '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " id="submit">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+<script>
+var btns = document.querySelectorAll('i');
+var clipboard = new Clipboard(btns);
+
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+
+clipboard.on('error', function(e) {
+    $("#msgtips").html('复制失败,请手工复制!');  
+    $('#my-alert').modal('open'); 
+    console.log(e);
+});
+
+
+
+var background_color = $("#background").css("background-color"); 
+$(".changebackground").css("background-color",background_color);
+
+
+$(function() {
+  var $selected = $('#js-selected');
+  $selected.on('change', function() {
+    var button_display = $(this).find('option').eq(this.selectedIndex).text();
+    var button_value = $(this).val();
+    var limit = $("#limit").val();
+    var search = $("#search").val();
+    var env = $("#env-selected").val();
+    offset = ( button_value - 1  ) * limit ;
+    if (search != 'False'){
+        location.href = "hosts?offset="+offset+"&page="+button_value+"&limit="+limit+"&search="+search+"&env="+env;
+    }else{
+        location.href = "hosts?offset="+offset+"&page="+button_value+"&limit="+limit+"&env="+env;
+    }
+  });
+
+
+$('#base-choice').click(function () {
+$("#base-hidden").toggle(2000);   
+});
+
+$('#app-choice').click(function () {
+$("#app-hidden").toggle(2000);   
+});
+
+$('#deploy-choice').click(function () {
+$("#deploy-hidden").toggle(2000);   
+});
+
+$('#submit').click(function () {
+var data = $("#update-form").serializeArray() ;
+console.log(data)
+$.ajax({
+ type: "POST",
+ url: "api/host_edit",
+ cache: false,
+ data: data,
+ dataType: "json",
+ complete: function(res){
+    console.log(res);
+    if (res.status != 200 ) {
+        $("#msgtips").html('请求失败,请再次尝试,超过三次,请联系管理员!');  
+        $('#my-alert').modal('open');
+    }
+    
+    if ( res.responseJSON.rc == 1 ) {
+        $("#msgtips").html('保存成功!');  
+        $('#my-alert').modal('open');
+    }else{
+        $("#msgtips").html('保存失败!');  
+        $('#my-alert').modal('open');       
+    }
+}
+});
+ 
+});
+
+
+//修改选中的值
+$(".checkbox").click(function(){ 
+    var obj = document.getElementsByName("checkbox");//选择所有name="checked"的对象，返回数组
+    var s='';//如果这样定义var s;变量s中会默认被赋个null值
+    var checkarr = new Array();
+    for(var i=0;i<obj.length;i++){
+        if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+            if (obj[i].value !== '') {
+
+                s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+                checkarr.push(obj[i].value);
+            };               
+    }
+    $('.have_choice').html("已选"+checkarr.length+"项");
+});         
+
+
+
+
+});
+
+</script>
+
+
+
+{% endblock %}

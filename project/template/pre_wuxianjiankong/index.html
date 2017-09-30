@@ -1,0 +1,681 @@
+{% extends "layout/cmdb.html" %}
+
+    {% block content %}
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="set-filed">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">自定义字段</div>
+    <div class="am-modal-bd">
+     
+     <div class="am-g am-text-left">
+
+      <div class="am-u-sm-4" style="margin-left:6%" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="id" class="filed" commet="序号" data-am-ucheck name="checkfield"> 序号
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="ap" class="filed" commet="设备类型" data-am-ucheck name="checkfield"> 设备类型
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="admin" class="filed" commet="管理账号" data-am-ucheck name="checkfield"> 管理账号
+                </label>
+                   
+      </div>
+
+      <div class="am-u-sm-3" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="password" class="filed" commet="管理密码" data-am-ucheck name="checkfield"> 管理密码
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="ssid" class="filed" commet="SSID" data-am-ucheck name="checkfield"> SSID
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="passwd" class="filed" commet="SSID密码" data-am-ucheck name="checkfield"> SSID密码
+                </label>
+                    
+      </div>  
+
+      <div class="am-u-sm-3" >
+        
+                <label class="am-checkbox">
+                  <input type="checkbox" value="spectrum" class="filed" commet="无线频段" data-am-ucheck name="checkfield"> 无线频段
+                </label>
+                
+
+                <label class="am-checkbox">
+                  <input type="checkbox" value="address" class="filed" commet="管理ip" data-am-ucheck name="checkfield"> 管理ip
+                </label>
+                
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <div class="am-modal-footer">
+    <span class="am-modal-btn" id="set-filed-sure">确定</span>
+    <span class="am-modal-btn">取消</span>
+  </div>
+</div>
+</div>
+
+
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+      <div class="am-modal-dialog">
+        <div class="am-modal-hd">提示</div>
+        <div class="am-modal-bd">
+           确定要删除选中的记录？
+      </div>
+      <div class="am-modal-footer">
+          <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+          <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      </div>
+    </div>
+    </div>
+
+
+            <div class="tpl-content-wrapper">
+                <div class="row-content am-cf">
+                    <div class="row">
+                        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                            <div class="widget am-cf">
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title  am-cf">网络设备</div>
+
+
+                                </div>
+                                <div class="widget-body  am-fr" id="background">
+
+                                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                        <div class="am-form-group">
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <button type="button" class="am-btn am-btn-default am-btn-success" id="host-create" ><span class="am-icon-plus"></span> 新增</button>
+                                                    <button type="button" id="delete" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
+                                                    <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-upload"></span> 导入 </button>
+                                                    <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-download"></span> 导出 </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
+                                        <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                                            <input type="text" class="am-form-field am-input-sm" id="searchval" placeholder="搜索" value= 
+                                              {% if data.search != False  %}
+                                              {{ data.search }}
+                                              {% endif %}
+                                              >
+                                            <span class="am-input-group-btn">
+                                                <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" id="searchbtn" type="button"></button>
+                                            </span>
+                                            <span class="am-input-group-btn">
+                                                <button class="am-btn  am-btn-default am-btn-secondary tpl-table-list-field am-icon-cog" type="button" style="margin-left:5px" id="set-fileds"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-u-sm-12 am-scrollable-horizontal">
+                                        <input type="hidden" id="limit" value="{{ data.limit }}">
+                                        <input type="hidden" id="pages" value="{{ data.pages }}">
+                                        <input type="hidden" id="search" value="{{ data.search }}">
+                                        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                            <thead>
+                                                <tr>
+                                                <th>
+                                                    <label class="am-checkbox">
+                                                      <input type="checkbox" id="SelectAll" value="" data-am-ucheck class="checkbox"> 
+                                                    </label>
+                                                </th>
+                                                    
+                                       {% if  session.has_key('pre_wuxianjiankong_fields')  %}
+                                              {% for th_title in session['pre_wuxianjiankong_filedcns'] %}
+                                                      <th class="am-text-middle th-title" >{{th_title}}</th>
+                                              {% endfor %}
+                                        {% else %}
+                                            
+                                                    <th class="am-text-middle th-title" >序号</th>
+
+                                                    <th class="am-text-middle th-title" >设备类型</th>
+
+                                                    <th class="am-text-middle th-title" >管理账号</th>
+
+                                                    <th class="am-text-middle th-title" >管理密码</th>
+
+                                                    <th class="am-text-middle th-title" >SSID</th>
+                                        {% endif %}
+    
+                                                    <th class="am-text-middle">操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                  
+                                           {% if  session.has_key('pre_wuxianjiankong_fields')  %}
+                                                  {% for item in data['pre_wuxianjiankong'] %}
+                                                  <tr class="even gradeC">
+                                                      <td class="am-text-middle">
+                                                          <label class="am-checkbox">
+                                                            <input type="checkbox"  name="checkbox" value="{{ item.id }}" data-am-ucheck class="checkbox"> 
+                                                          </label>
+                                                      </td>
+
+                                                      
+                                                     {% if  'id' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.id or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'ap' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.ap or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'admin' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.admin or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'password' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.password or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'ssid' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.ssid or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'passwd' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.passwd or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'spectrum' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.spectrum or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'address' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.address or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                     {% if  'floor' in  session['pre_wuxianjiankong_fields']  %}
+                                                      <td class="am-text-middle">{{ item.floor or "" }}</td>
+                                                     {% endif %}           
+            
+
+                                                      <td class="am-text-middle">
+                                                          <div class="tpl-table-black-operation">
+                                                              <a href="project_edit?id={{ item.id }}">
+                                                                  <i class="am-icon-pencil"></i> 编辑
+                                                              </a>
+                                                              <a href="javascript:;" class="tpl-table-black-operation-del delete-one" dename="{{ item.name or '' }}" value="{{ item.id }}">
+                                                                  <i class="am-icon-trash" ></i> 删除
+                                                              </a>
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                  {% endfor %}
+                                           {% else %}
+                                                 
+
+                                                {% for item in data['pre_wuxianjiankong'] %}
+                                                <tr class="even gradeC">
+                                                    <td class="am-text-middle">
+                                                        <label class="am-checkbox">
+                                                          <input type="checkbox"  name="checkbox" value="{{ item.id }}" data-am-ucheck class="checkbox"> 
+                                                        </label>
+                                                    </td>
+
+                                                    
+                                                    <td class="am-text-middle">{{ item.id or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.ap or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.admin or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.password or "" }}</td>
+
+                                                    <td class="am-text-middle">{{ item.ssid or "" }}</td>
+
+                                                    <td class="am-text-middle">
+                                                        <div class="tpl-table-black-operation">
+                                                            <a href="pre_wuxianjiankong_edit?id={{ item.id }}">
+                                                                <i class="am-icon-pencil"></i> 编辑
+                                                            </a>
+                                                            <a href="javascript:;" class="tpl-table-black-operation-del delete-one" dename="{{ item.id or '' }}" value="{{ item.id }}">
+                                                                <i class="am-icon-trash" ></i> 删除
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+    
+                                           {% endif %}
+
+    
+
+                                                <!-- more data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="am-u-lg-12 am-cf">
+
+                                        <div class="am-fl changebackground">
+                                            <ul class="am-pagination tpl-pagination changebackground">
+                                                <li class="changebackground" ><a  href="javascript:;" class="have_choice changebackground">已选0项</a></li>
+                                                <li class="changebackground"><a  class="changebackground" href="javascript:;" >共{{ data.count }}项</a></li>
+                                          </ul>
+                                      </div>
+
+                                        <div class="am-fr" id="testcenter">
+                                            <ul class="am-pagination tpl-pagination">
+                                                <li ><a href="javascript:;" class="first_page"><i class="am-icon-step-backward"></i></a></li>
+                                                <li ><a href="javascript:;" class="pre_page"><i class="am-icon-arrow-left"></i></a></li>
+
+                                                <div class="am-btn-group">
+                                                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                                        <div  class="am-form-group tpl-table-list-select" >
+                                                            <select id="js-selected" data-am-selected="{btnWidth: '60px', btnSize: 'sm',dropUp: 1}">
+                                                              {% for page in range(1,data['pages'],1) %}
+                                                              <option value="{{ page }}" 
+                                                              {% if data.page == page  %}
+                                                              selected
+                                                              {% endif %}
+                                                              >&nbsp&nbsp{{ page }}</option>
+                                                              {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+       
+
+
+                                                <li><a href="javascript:;"  class="next_page"><i class="am-icon-arrow-right"></i></a></li>
+                                                <li ><a href="javascript:;" class="last_page"><i class="am-icon-step-forward"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+    <script>
+    var btns = document.querySelectorAll('button');
+    var clipboard = new Clipboard(btns);
+
+    clipboard.on('success', function(e) {
+      console.log(e);
+      $('#my-prompt').modal('close');
+      $("#msgtips").html('复制成功,快去粘贴吧!');  
+      $('#my-alert').modal('open');
+    });
+
+    clipboard.on('error', function(e) {
+        $("#msgtips").html('复制失败,请手工复制!');  
+        $('#my-alert').modal('open'); 
+        console.log(e);
+    });
+
+
+
+    var background_color = $("#background").css("background-color"); 
+    $(".changebackground").css("background-color",background_color);
+
+
+    $(function() {
+      var $selected = $('#js-selected');
+      $selected.on('change', function() {
+        var button_display = $(this).find('option').eq(this.selectedIndex).text();
+        var button_value = $(this).val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        offset = ( button_value - 1  ) * limit ;
+        if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+button_value+"&limit="+limit+"&search="+search;
+        }else{
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+button_value+"&limit="+limit;
+        }
+      });
+
+
+    
+    $("#set-fileds").click(function(){ 
+      var obj_th = $(".th-title");//选择所有name="th-title"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var tharr = new Array();
+      for(var i=0;i<obj_th.length;i++){
+        tharr.push($.trim($(obj_th[i]).text()));
+      }
+      console.log(tharr);
+
+      var obj = document.getElementsByName("checkfield");//选择所有name="checkfield"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var no_math_arr = new Array();
+      var commetarr = new Array();
+      for(var i=0;i<obj.length;i++){
+        // console.log($.trim($(obj[i]).attr("commet")));
+        if ($.inArray($.trim($(obj[i]).attr("commet")), tharr) != -1 ) {
+          $(obj[i]).uCheck('check');
+        }else{
+          no_math_arr.push($.trim($(obj[i]).attr("commet")));
+        }
+      }
+
+      if ( no_math_arr.length + obj_th.length != obj.length  ) {
+        console.log("还有字段未被对应,请检查网络设备名称和表格名称是否正确,默认需要显示字段:"+tharr+"未被显示的字段:"+no_math_arr);
+      }
+      $('#set-filed').modal('open');
+    });
+
+    
+    $("#set-filed-sure").click(function(){ 
+      var obj = document.getElementsByName("checkfield");//选择所有name="checkfield"的对象，返回数组
+      var s='';//如果这样定义var s;变量s中会默认被赋个null值
+      var checkarr = new Array();
+      var commetarr = new Array();
+      for(var i=0;i<obj.length;i++){
+        if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+          if (obj[i].value !== '') {
+                s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+                checkarr.push(obj[i].value);
+                commetarr.push($.trim($(obj[i]).attr("commet")));
+              };               
+            }
+      if ( checkarr.length == 0 ) {
+            $("#msgtips").html('自定义字段不能为空!');  
+            $('#my-alert').modal('open'); 
+            return;   
+      }
+      console.log(checkarr);
+      console.log(commetarr);
+
+
+      var $selected = $('#js-selected');
+      var select_value = $selected.val();
+      var limit = $("#limit").val();
+      var search = $("#search").val();
+      var env = $("#env-selected").val();
+      if (search != 'False'){
+      location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&search="+search+"&fields="+checkarr+"&filedcns="+commetarr;
+      }else{
+      location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&fields="+checkarr+"&filedcns="+commetarr;
+      } 
+
+    });
+
+
+    $('.pre_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        page = parseInt(select_value) - 1 ;
+        offset = ( page - 1  ) * limit ;
+        if (page > 1){
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit;    
+            }       
+        }else{
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit;    
+            }   
+        }
+
+    });
+
+    $('.first_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        if (search != 'False'){
+        location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+        }else{
+        location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit;
+        }   
+    });
+
+    $('.next_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var pages = $("#pages").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        max_page = pages - 1 ;
+        page = ( parseInt(select_value) + 1) ;
+        offset = ( page - 1  ) * limit ;
+        if (page < max_page){
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit; 
+            }        
+        }else{
+            offset = ( max_page - 1  ) * limit ;
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+max_page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+max_page+"&limit="+limit;  
+            }   
+        }
+
+    });
+
+    $('.last_page').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var pages = $("#pages").val();
+        var search = $("#search").val();
+        var env = $("#env-selected").val();
+        page = pages - 1 ;
+        offset = ( page - 1  ) * limit ;
+        if (page > 1){
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+offset+"&page="+page+"&limit="+limit;
+            }       
+        }else{
+            if (search != 'False'){
+            location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+            }else{
+            location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit;
+            }   
+        } 
+    });
+
+    $('#searchbtn').click(function () {
+        var $selected = $('#js-selected');
+        var select_value = $selected.val();
+        var limit = $("#limit").val();
+        var search = $("#searchval").val();
+        var env = $("#env-selected").val();
+        if (search != 'False'){
+        location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit+"&search="+search;
+        }else{
+        location.href = "pre_wuxianjiankong?offset="+0+"&page="+1+"&limit="+limit;   
+        }   
+    });
+
+
+    $('#host-create').click(function () {
+        location.href="pre_wuxianjiankong_create";  
+    });
+
+
+    //删除选中的值
+    $("#delete").click(function(){ 
+        var obj = document.getElementsByName("checkbox");//选择所有name="checked"的对象，返回数组
+        var s='';//如果这样定义var s;变量s中会默认被赋个null值
+        var checkarr = new Array();
+        for(var i=0;i<obj.length;i++){
+            if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+                if (obj[i].value !== '') {
+                    s+=parseInt(obj[i].value)+',';   //如果选中，将value添加到变量s中
+                    checkarr.push(obj[i].value);
+                };               
+        }
+        if ( checkarr.length == 0 ) {
+                $("#msgtips").html('没有选中任何记录,请重新选择!');  
+                $('#my-alert').modal('open');
+                return ;        
+        } 
+
+        function reload(){
+         location.reload();
+        }
+     
+
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function(options) {
+                $.ajax({
+                 type: "POST",
+                 url: "/api/pre_wuxianjiankong/delete",
+                 cache: false,
+                 data: {'ids':s},
+                 dataType: "json",
+                 success: function(res){
+                    console.log(res);
+
+                    if ( res.rc == 1 ) {
+                        $("#msgtips").html('删除成功!');  
+                        $('#my-alert').modal('open');
+                         location.reload();
+                    }else{
+                        $("#msgtips").html('删除失败!');  
+                        $('#my-alert').modal('open');       
+                    }
+
+                },
+                error:function(){     
+                    $("#msgtips").html('删除失败!');  
+                    $('#my-alert').modal('open');     
+                } 
+            });
+
+            },
+            // closeOnConfirm: false,
+          //   onCancel: function() {
+          //     alert('算求，不弄了');
+          // }
+      });
+        
+    }); 
+
+    //删除单个
+    $(".delete-one").click(function(){ 
+        var id = $(this).attr("value");
+        var dename = $(this).attr("dename");
+        if ( id == "" ) {
+            $("#msgtips").html('获取id失败!');  
+            $('#my-alert').modal('open');
+            return;
+        }
+        $('.am-modal-bd').html("确定要删除 [id为"+dename+"] 这条记录？");
+         
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function(options) {
+                $.ajax({
+                 type: "POST",
+                 url: "/api/pre_wuxianjiankong/delete",
+                 cache: false,
+                 data: {'ids':id},
+                 dataType: "json",
+                 success: function(res){
+                    console.log(res);
+
+                    if ( res.rc == 1 ) {
+                        $("#msgtips").html('删除成功!');  
+                        $('#my-alert').modal({
+                          relatedTarget: this,
+                          onConfirm: function(options) {
+                             location.reload();
+                          }
+                        });
+                    }else{
+                        $("#msgtips").html('删除失败!');  
+                        $('#my-alert').modal('open');       
+                    }
+
+                },
+                error:function(){     
+                    $("#msgtips").html('删除失败!');  
+                    $('#my-alert').modal('open');     
+                } 
+            });
+
+            },
+            // closeOnConfirm: false,
+          //   onCancel: function() {
+          //     alert('算求，不弄了');
+          // }
+      });
+        
+    }); 
+
+
+    //修改选中的值
+    $(".checkbox").click(function(){ 
+        var obj = document.getElementsByName("checkbox");//选择所有name="checked"的对象，返回数组
+        var s='';//如果这样定义var s;变量s中会默认被赋个null值
+        var checkarr = new Array();
+        for(var i=0;i<obj.length;i++){
+            if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+                if (obj[i].value !== '') {
+                    s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+                    checkarr.push(obj[i].value);
+                };               
+        }
+        $('.have_choice').html("已选"+checkarr.length+"项");
+        $('.am-modal-bd').html("确定要删除选中的"+checkarr.length+"条记录？");
+    });         
+
+    //全选和反选
+    $("#SelectAll").click( 
+    function(){ 
+      if(this.checked){ 
+        $("input[name='checkbox']").each(function(){this.checked=true;}); 
+      }else{ 
+        $("input[name='checkbox']").each(function(){this.checked=false;}); 
+      } 
+    });
+
+
+
+    });
+
+    </script>
+
+
+    {% endblock %}
+    

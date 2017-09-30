@@ -1,0 +1,810 @@
+{% extends "layout/apycenter.html" %}
+
+{% block content %}
+
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="my-popup">
+  <div class="am-modal-dialog" style="width:1000px;height:500px">
+
+    <!-- 内容区域 -->
+    <div class="widget am-cf " style="height:500px">
+
+      <div class="widget-head am-cf">
+      <div class="widget-title am-fl">关联主机</div>
+        <div class="widget-function am-fr">
+          <a href="javascript:;" class="am-icon-cog"></a>
+        </div>
+      </div>
+
+                <div class="am-u-sm-6" style="display:inline;">
+
+                  <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                    <input type="text" class="am-form-field am-input-sm" id="researchval" placeholder="搜索" value=''>
+                    <span class="am-input-group-btn">
+                      <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" id="researchbtn" type="button"></button>
+                    </span>
+                  </div>
+
+                  <div class="am-scrollable-vertical" style="height:295px">
+                    <table width="100%" class="am-table am-table-compact am-table-bordered am-table-radius am-table-striped tpl-table-black am-text-nowrap createtable" id="example-r">               
+                      <thead>
+                        <tr class="gradeC">
+                          <th style="text-align:center;vertical-align:middle" >
+                            <label class="am-checkbox" >
+                              <input type="checkbox" id="reSelectAll" value="" data-am-ucheck class="recheckbox"> 
+                            </label>
+                          </th>
+                          <th style="text-align:center;vertical-align:middle;">主机名</th>
+                          <th style="text-align:center;vertical-align:middle;">主机IP</th>
+                        </tr>
+                      </thead>
+            <!--           <div id="createtable"> </div> -->
+                      <tbody>
+
+                      </tbody>
+                      
+                    </table>
+                  </div>
+
+                  <div  style="display:block;margin-top:10px">
+                    <div class="am-form-group" style="display:inline;">
+                      <div class="am-u-sm-3 am-u-sm-push-3">
+                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success" id="related-sure-hosts">确定</button>
+                      </div>
+                    </div>
+
+                    <div class="am-form-group" style="display:inline;">
+                      <div class="am-u-sm-3 am-u-sm-push-3">
+                        <button type="button" class="am-btn am-btn-default tpl-btn-bg-color-success" id="related-cancel-hosts">取消</button>
+                      </div>
+                    </div>
+                  </div> 
+
+
+                </div>
+
+
+                <div class="am-u-sm-6" style="display:inline;">
+
+                  <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p"> 
+
+                  <div class="am-form-field am-input-sm">已选择</div>
+
+                 </div>
+
+                  <div class="am-scrollable-vertical" style="height:295px">
+                  <table width="100%" class="am-table am-table-compact am-table-bordered am-table-radius am-table-striped tpl-table-black relatetable" id="example-r">               
+                    <thead>
+                      <tr class="gradeC">
+                        <th style="text-align:center;vertical-align:middle;">主机名</th>
+                        <th style="text-align:center;vertical-align:middle;">主机IP</th>
+                        <th style="text-align:center;vertical-align:middle" >
+                          <span>操作</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>                
+                      <!-- more data -->
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+
+
+    </div>
+
+
+  </div>
+</div>
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+
+<!--         <div class="container-fluid am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单 <small>Amaze UI</small></div>
+                    <p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>
+                </div>
+                <div class="am-u-lg-3 tpl-index-settings-button">
+                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">编辑发布</div>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-line-form">
+
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left"> 基础信息 <span class="tpl-form-line-small-title">Base</span></label>
+                                    <div class="am-u-sm-12">
+                                        <hr/>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="id" value="{{ data.id or "" }}" >
+                                <div class="am-form-group">                              
+                                    <label for="user-name"  id="name" class="am-u-sm-3 am-form-label">上线名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="name" value="{{ data.name or "" }}" >
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-phone" id="is_deloy_dir" class="am-u-sm-3 am-form-label">发布环境</label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="env">
+                                          <option value="com"
+                                          {% if data.env == 'com' %}
+                                          selected
+                                          {% endif %}
+                                          >生产环境</option>
+                                          <option value="uat"
+                                          {% if data.env == 'uat' %}
+                                          selected
+                                          {% endif %}
+                                          >准生产环境</option>
+                                          <option value="test"
+                                          {% if data.env == 'test' %}
+                                          selected
+                                          {% endif %}
+                                          >测试环境</option>
+                                          <option value="dev"
+                                          {% if data.env == 'dev' %}
+                                          selected
+                                          {% endif %}
+                                          >开发环境</option>
+                                        </select>
+
+                                    </div>
+                              </div>
+
+
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="relate_hostid" class="am-u-sm-3 am-form-label"> 关联主机 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="urelate_hostid" placeholder="请输入内容" name="relate_hostid" hostid="{{ data.id }}"   value="{{ data.relate_hostid or "" }}">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">                              
+                                    <label for="user-name" id="download_url" class="am-u-sm-3 am-form-label"> 下载路径 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入内容" name="download_url" value="{{ data.download_url or "" }}">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" id="isoverwrite" class="am-u-sm-3 am-form-label">是否覆盖</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" name="isoverwrite"  value="1"
+
+                                          {% if data.isoverwrite == '1' %}
+                                          checked
+                                          {% endif %}
+
+                                            >
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <small>是否覆盖更新</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">创建时间    </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="" data-am-datepicker="" readonly=""  name="created_at" value="{{ data.created_at or "" }}">
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label for="user-email" class="am-u-sm-3 am-form-label">更新时间    </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="" data-am-datepicker="" readonly=""  name="updated_at" value="{{ data.updated_at or "" }}">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="am-form-group">
+                                  <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <button type="button" style="display:inline;float:left" class="am-btn am-btn-primary tpl-btn-bg-color-success" id="submit" >确定</button>
+                                    <button type="button" style="display:inline;float:left;margin-left:50px" class="am-btn am-btn-default tpl-btn-bg-color-success" id="cancel">取消</button>
+                                  </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+
+<script>
+
+function oncheck(o)
+{
+  console.log('----------------------oncheck-------------------');
+  var src_related = new Array();
+    //简便方法
+    $('.cancel-relate-host').each(function(i) {
+      var id =$(this).attr('value'); 
+      src_related.push(id);
+    });
+  // alert(o.checked);
+  console.log('原来绑定的ID: '+src_related );
+  var obj = document.getElementsByName("recheckbox");//选择所有name="checked"的对象，返回数组
+  var s='';//如果这样定义var s;变量s中会默认被赋个null值
+  var checkarr = new Array();
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+      if (obj[i].value !== '') {
+            s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+            checkarr.push(obj[i].value);
+          };               
+        }
+
+  var researchhostids = $('#researchval').attr('researchhostids');
+  console.log('原search时的ids: '+researchhostids);
+  if (researchhostids) {
+    var researchhostidsArray =researchhostids.split(",") ; 
+    if ( researchhostidsArray.length > 0 ) {
+      var  merge = $.merge(checkarr,researchhostidsArray);
+      var  unique = $.unique(merge)
+      console.log('合并后的数组:' + unique);
+      var checkarr = unique ;
+    }   
+  }  
+  console.log('重新绑定的ID: '+checkarr);
+  $('#researchval').attr('hostids',checkarr.join(","));
+  console.log('动态修改id=researchval,hostids='+$('#researchval').attr('hostids'));
+  var store = $.AMUI.store;
+
+  if (store.enabled) {
+    var store_string = store.get('store_string');
+  }
+
+  console.log('清空右侧已选择主机');
+  var $autotr = $(".relateautore");  
+  $autotr.remove();
+
+  var retrArray = new Array();
+  $.each(store_string, function(k, v) {
+      // console.log(k+'------'+v.external_ip);
+
+    if (v.env == 'com') {
+     var env= "生产";
+    }
+    if (v.env == 'uat') {
+    var env = "准生产";
+    }
+    if (v.env == 'dev') {
+    var env = "开发";
+    }
+    if (v.env == 'test') {
+    var env = "测试";
+    }    
+
+    var resid = $.inArray(v.id.toString(), checkarr) ;
+    if ( resid  != -1 ) {
+      console.log('已选择-环境/主机: '+env+'/'+v.server_name);
+      var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+      "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+      "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+      "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+      +"</tr>";
+
+      retrArray.unshift(retr);
+    }
+
+  }); //each end
+
+  var restr =retrArray.join(""); 
+  var $restr = $(restr) ;  
+  var $retable = $(".relatetable");  
+  $retable.append($restr); 
+
+} 
+
+
+function cancelcheck(o)
+{
+  console.log('-------------------------------cancelcheck------------------------------');
+  var delete_id = o;
+  // console.log(delete_id.attr("value"));
+  var src_related = new Array();
+    //简便方法
+    $('.cancel-relate-host').each(function(i) {
+      var id =$(this).attr('value'); 
+      src_related.push(id);
+    });
+  var checkarr = new Array();
+  $.each(src_related, function(k, v) {
+   if (delete_id.toString()  != v.toString() ) {
+      checkarr.push(v);
+   }
+  })
+  console.log('当前绑定的ID: '+src_related + ' 当前删除的ID: '+o +' 当前剩余的ID: '+checkarr );
+  var store = $.AMUI.store;
+  if (store.enabled) {
+    var store_string = store.get('store_string');
+  }
+
+  var $autotr = $(".relateautore");  
+  $autotr.remove();
+
+  var retrArray = new Array();
+  $.each(store_string, function(k, v) {
+      // console.log(k+'------'+v.external_ip);
+
+    if (v.env == 'com') {
+     var env= "生产";
+    }
+    if (v.env == 'uat') {
+    var env = "准生产";
+    }
+    if (v.env == 'dev') {
+    var env = "开发";
+    }
+    if (v.env == 'test') {
+    var env = "测试";
+    }    
+
+    var resid = $.inArray(v.id.toString(), checkarr) ;
+    if ( resid  != -1 ) {
+      console.log('已选择-ID/环境/主机: '+v.id+'/'+env+'/'+v.server_name);
+      var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+      "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+      "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+      "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+      +"</tr>";
+
+      retrArray.unshift(retr);
+    }
+
+  }); //each end
+
+  var restr =retrArray.join(""); 
+  var $restr = $(restr) ;  
+  var $retable = $(".relatetable");  
+  $retable.append($restr); 
+
+} 
+
+
+$(function() {
+
+
+$('#base-choice').click(function () {
+$("#base-hidden").toggle(2000);   
+});
+
+$('#app-choice').click(function () {
+$("#app-hidden").toggle(2000);   
+});
+
+$('#deploy-choice').click(function () {
+$("#deploy-hidden").toggle(2000);   
+});
+
+$('#submit').click(function () {
+// var checkParm=new Array("server_name","external_ip","network_ip","config_dir","pro_dir","pro_key","pro_init","app_key","local_name");
+var checkParm=new Array("name","relate_hostid","download_url");
+var data = $(':input').serializeArray();
+var emptyArr = new Array();
+$.each( data, function(i, field){
+    if ($.inArray(field.name, checkParm) != -1 ) {
+        if (field.value == '' ) {
+           var temp = $("#"+field.name+"").html().trim();
+            // emptyArr.push(field.name); 
+            emptyArr.push(temp); 
+        }       
+    }
+});
+
+if (emptyArr.length != 0 ) {
+    $("#msgtips").html(emptyArr + '不能为空!');  
+    $('#my-alert').modal('open');
+    return ;     
+}
+
+$.ajax({
+ type: "POST",
+ url: "api/project_edit",
+ cache: false,
+ data: data,
+ dataType: "json",
+ complete: function(res){
+    console.log(res);
+    if (res.status != 200 ) {
+        $("#msgtips").html('请求失败,请再次尝试,超过三次,请联系管理员!');  
+        $('#my-alert').modal('open');
+    }
+    
+    if ( res.responseJSON.rc == 1 ) {
+        location.href="projects";
+    }else{
+        $("#msgtips").html('更新失败!');  
+        $('#my-alert').modal('open');       
+    }
+}
+});
+ 
+});
+
+//关联主机全选和反选
+$("#reSelectAll").click( 
+function(){ 
+  if(this.checked){ 
+    $("input[name='recheckbox']").each(function(){this.checked=true;}); 
+  }else{ 
+    $("input[name='recheckbox']").each(function(){this.checked=false;}); 
+  }
+
+  var obj = document.getElementsByName("recheckbox");//选择所有name="checked"的对象，返回数组
+  var s='';//如果这样定义var s;变量s中会默认被赋个null值
+  var checkarr = new Array();
+  for(var i=0;i<obj.length;i++){
+    if(obj[i].checked) //取到对象数组后，我们来循环检测它是不是被选中
+      if (obj[i].value !== '') {
+            s+=obj[i].value+',';   //如果选中，将value添加到变量s中
+            checkarr.push(obj[i].value);
+          };               
+        }
+  alert(s);
+  console.log(checkarr);
+
+});
+
+
+
+$("#urelate_hostid").click(function(){ 
+  var hostids = $(this).attr("value");
+  var id = $(this).attr("hostid");
+  var hostidsArray =  hostids.split(",");
+  $('#researchval').attr('hostids',hostids);
+  $('#researchval').attr('unqid',id);
+  // alert(hostids);
+  console.log(hostidsArray);
+  var $autotr = $(".autotr");  
+  $autotr.remove();
+
+  var store = $.AMUI.store;
+  var store_hostids = new Array(); 
+  if (store.enabled) {
+   store.remove('store_string');
+ }     
+
+  $.ajax({
+   type: "GET",
+   url: "/hosts/get",
+   cache: false,
+   dataType: "json",
+   // async:false,
+   success: function(res){
+    console.log(res);
+    if ( res.count == 0 ) {
+      $("#msgtips").html('获取数据为空!');  
+      $('#my-alert').modal('open');
+      return ;   
+    };
+
+    var trArray = new Array();
+    var retrArray = new Array();
+    $.each(res.hosts, function(k, v) {
+      // console.log(k+'------'+v.external_ip);
+
+      if (v.env == 'com') {
+         var env= "生产";
+      }
+      if (v.env == 'uat') {
+        var env = "准生产";
+      }
+      if (v.env == 'dev') {
+        var env = "开发";
+      }
+      if (v.env == 'test') {
+        var env = "测试";
+      }    
+         
+      var resid = $.inArray(v.id.toString(), hostidsArray) ;
+      if ( resid  == -1 ) {
+        var tr = "<tr class=\"gradeC autotr\">"+  
+        "<td >"+
+        "<label class=\"am-checkbox\">"+
+        "<input type=\"checkbox\" style=\"display:none\" name=\"recheckbox\" value=\""+v.id +"\" onclick=\"oncheck(this)\" class=\"recheckbox am-ucheck-checkbox\">"+ 
+        "<span class=\"am-ucheck-icons\"><i class=\"am-icon-unchecked \"></i><i class=\"am-icon-checked \"></i></span>" +
+        "</label>"+
+        "</td> "+
+        "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+        "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+        +"</tr>"; 
+        trArray.push(tr);
+      }else{
+        var tr = "<tr class=\"gradeC autotr\">"+  
+        "<td >"+
+        "<label class=\"am-checkbox\">"+
+        "<input type=\"checkbox\" style=\"display:none\" name=\"recheckbox\" value=\""+v.id +"\" onclick=\"oncheck(this)\" class=\"recheckbox am-ucheck-checkbox\" checked>"+ 
+        "<span class=\"am-ucheck-icons\"><i class=\"am-icon-unchecked \"></i><i class=\"am-icon-checked \"></i></span>" +
+        "</label>"+
+        "</td> "+
+        "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+        "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+        +"</tr>"; 
+        var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+        "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+        "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+        "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+        +"</tr>";
+
+        trArray.unshift(tr);
+        retrArray.unshift(retr);
+      }
+
+    });
+
+    if (store.enabled) {
+      store.set('store_string', res.hosts);
+   }   
+    var str =trArray.join(""); 
+    var $str = $(str) ;  
+    var $table = $(".createtable");  
+    $table.append($str); 
+    
+    var restr =retrArray.join(""); 
+    var $restr = $(restr) ;  
+    var $retable = $(".relatetable");  
+    $retable.append($restr); 
+    // $("#createtable").append("</tbody>");
+
+    },
+    error:function(){     
+      $("#msgtips").html('获取数据失败!');  
+      $('#my-alert').modal('open'); 
+      return;    
+    } 
+  });
+
+  $('#my-popup').modal('open');
+});
+
+
+$("#cancel").click(function(){ 
+  location.href="projects";
+});
+
+// 关联主机取消按钮
+$("#related-cancel-hosts").click(function(){ 
+  $('#my-popup').modal('close');
+});
+
+// 关联主机确定按钮
+$("#related-sure-hosts").click(function(){ 
+  console.log('---------------------开始保存---------------');
+  var id = $('#researchval').attr('unqid');
+  var src_related = new Array();
+  $('.cancel-relate-host').each(function(i) {
+    var id =$(this).attr('value'); 
+    src_related.push(id);
+  });
+  console.log('当前绑定的ID: '+src_related);
+  var data = {
+  'id':id,'relate_hostid':src_related.join(",")
+  };
+  $("#urelate_hostid").val(src_related.join(","));
+  $("#urelate_hostid").attr("value",src_related.join(","));
+  $('#my-popup').modal('close');
+});
+
+
+$('#researchbtn').click(function () {
+    console.log('---------------------search----------------');
+    var search = $("#researchval").val();
+    var hostids = $('#researchval').attr('hostids') ;
+    var hostidsArray =  hostids.split(","); 
+    $('#researchval').attr('researchhostids',hostids);
+    console.log('id=researchval时,hostids='+hostidsArray);
+    var $autotr = $(".autotr");  
+    $autotr.remove();
+    var $reautotr = $(".relateautore");  
+    $reautotr.remove();
+    console.log('清空关联主机和已选择主机');
+
+    var store = $.AMUI.store;
+    var store_hostids = new Array(); 
+    if (store.enabled) {
+     var all_data = store.get('store_string');;
+     store.remove('store_string');
+   }       
+    $.ajax({
+     type: "GET",
+     url: "/hosts/get?search="+search,
+     cache: false,
+     dataType: "json",
+     success: function(res){
+     console.log(res);
+      if ( res.count == 0 ) {
+        $("#msgtips").html('获取数据为空!');  
+        $('#my-alert').modal('open');
+        return ;   
+      };
+
+      var trArray = new Array();
+      var retrArray = new Array();
+      var haverelatedId = new Array();
+      $.each(res.hosts, function(k, v) {
+        // console.log(k+'------'+v.external_ip);
+
+        if (v.env == 'com') {
+           var env= "生产";
+        }
+        if (v.env == 'uat') {
+          var env = "准生产";
+        }
+        if (v.env == 'dev') {
+          var env = "开发";
+        }
+        if (v.env == 'test') {
+          var env = "测试";
+        }    
+           
+        var resid = $.inArray(v.id.toString(), hostidsArray) ;
+        if ( resid  == -1 ) {
+          var tr = "<tr class=\"gradeC autotr\">"+  
+          "<td >"+
+          "<label class=\"am-checkbox\">"+
+          "<input type=\"checkbox\" style=\"display:none\" name=\"recheckbox\" value=\""+v.id +"\" onclick=\"oncheck(this)\" class=\"recheckbox am-ucheck-checkbox\">"+ 
+          "<span class=\"am-ucheck-icons\"><i class=\"am-icon-unchecked \"></i><i class=\"am-icon-checked \"></i></span>" +
+          "</label>"+
+          "</td> "+
+          "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+          "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+          +"</tr>"; 
+          trArray.push(tr);
+        }else{
+          var tr = "<tr class=\"gradeC autotr\">"+  
+          "<td >"+
+          "<label class=\"am-checkbox\">"+
+          "<input type=\"checkbox\" style=\"display:none\" name=\"recheckbox\" value=\""+v.id +"\" onclick=\"oncheck(this)\" class=\"recheckbox am-ucheck-checkbox\" checked>"+ 
+          "<span class=\"am-ucheck-icons\"><i class=\"am-icon-unchecked \"></i><i class=\"am-icon-checked \"></i></span>" +
+          "</label>"+
+          "</td> "+
+          "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+          "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+          +"</tr>"; 
+          var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+          "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+          "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+          "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+          +"</tr>";
+          haverelatedId.unshift(v.id);
+          trArray.unshift(tr);
+          retrArray.unshift(retr);
+        }
+
+      });
+
+      console.log('原来已关联的ID:'+hostidsArray);
+      var lastretrArray = new Array();
+
+      // if( haverelatedId.length == 0 ){
+      //     $.each(hostidsArray, function(j, id) {
+      //       var resid = $.inArray(v.id.toString(), hostidsArray) ;
+      //       if ( resid  != -1 ) {
+      //         var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+      //         "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+      //         "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+      //         "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+      //         +"</tr>";
+
+      //         lastretrArray.unshift(retr);
+      //       }
+            
+      //     })
+      // }
+        
+      $.each(all_data, function(k, v) {
+          // console.log(k+'------'+v.external_ip);
+
+        if (v.env == 'com') {
+         var env= "生产";
+        }
+        if (v.env == 'uat') {
+        var env = "准生产";
+        }
+        if (v.env == 'dev') {
+        var env = "开发";
+        }
+        if (v.env == 'test') {
+        var env = "测试";
+        }
+     
+        $.each(hostidsArray, function(j, id) {
+          if ( id.toString() == v.id.toString() ) {
+            console.log('已选择-再次重新关联:'+id+' 环境/主机:'+env+'/'+v.server_name);
+            var retr = "<tr class=\"gradeC autotr relateautore\">"+  
+            "<td style='text-align:center;vertical-align:middle;'>"+env+" | "+v.server_name+"</td>"+   
+            "<td style='text-align:center;vertical-align:middle;'>"+v.external_ip+"<br/>"+v.network_ip+"</td>"+   
+            "<td >"+"<a href=\"javascript:;\" value=\""+v.id +"\" onclick=\"cancelcheck("+v.id+")\" class=\"am-close cancel-relate-host\">&times;</a>"+"</td>"+   
+            +"</tr>";
+
+            lastretrArray.unshift(retr);
+
+          }
+
+        })
+
+
+
+      }); //each end      
+
+      if (store.enabled) {
+        store.set('store_string', all_data);
+     }   
+      var str =trArray.join(""); 
+      var $str = $(str) ;  
+      var $table = $(".createtable");  
+      $table.append($str); 
+      
+      // var restr =retrArray.join(""); 
+      // var $restr = $(restr) ;  
+      // var $retable = $(".relatetable");  
+      // $retable.append($restr); 
+
+      // 重新搜索时关联上次已选择的主机
+      // console.log(lastretrArray);
+      var restr =lastretrArray.join(""); 
+      var $restr = $(restr) ;  
+      var $retable = $(".relatetable");  
+      $retable.append($restr);       
+      // $("#createtable").append("</tbody>");
+
+      },
+      error:function(){     
+        $("#msgtips").html('获取数据失败!');  
+        $('#my-alert').modal('open'); 
+        return;    
+      } 
+});
+
+
+});
+
+       
+
+
+
+
+});
+
+</script>
+
+
+
+{% endblock %}
