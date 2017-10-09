@@ -123,7 +123,10 @@ def Host(request):
     data = UserName.objects.all()
     print data
     ret['data'] = data
-    obj = UserName.objects.filter(user_group__id="1")
+    ###联表查询，user_group是第二个表的外键，连接第二张表的id做判断，小于3的全部查询返回
+    #obj = UserName.objects.filter(user_group__id__lt="3")
+    ###同上，联表查询，包含关系
+    obj = UserName.objects.filter(user_group__groupname__contains="业务")
     ret['obj'] = obj
 
     print obj.query
