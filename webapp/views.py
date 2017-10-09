@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response,redirect
 from  django.http import  HttpResponse
 from  .forms import  RegisterForm
-from .models import  Asset,Userinfo,UserName,GroupName
+from .models import  Asset,Userinfo,UserName,GroupName,ZabbixGroup,ZabbixUser
 def List(request,id,name):
     print  name,id
     return  HttpResponse('login')
@@ -125,8 +125,8 @@ def Host(request):
     ret['data'] = data
     ###联表查询，user_group是第二个表的外键，连接第二张表的id做判断，小于3的全部查询返回
     #obj = UserName.objects.filter(user_group__id__lt="3")
-    ###同上，联表查询，包含关系
-    obj = UserName.objects.filter(user_group__groupname__contains="业务")
+    ###同上，联表查询，包含关系,values 去某个字段的值
+    obj = UserName.objects.filter(user_group__groupname__contains="业务").values('username')
     ret['obj'] = obj
 
     print obj.query
@@ -138,3 +138,10 @@ def Host(request):
 
 def Index(request):
     return render_to_response('index.html')
+
+###多对多往第三张表插入数据
+def Many(request):
+    u1 = ZabbixUser.objects.get(id=1)
+    g1 = ZabbixGroup.objects.get(id=2)
+    g1.relation.add(u1)
+    return HttpResponse('ok')

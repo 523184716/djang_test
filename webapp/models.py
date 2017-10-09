@@ -55,3 +55,5 @@ class UserName(models.Model):
 class GroupName(models.Model):
     groupname = models.CharField(max_length=50)
     #user_group = models.ManyToManyField('UserName')
+
+#class  UserContain(models.Model):
