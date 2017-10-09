@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="add">
+        <h3>添加主机</h3>
+        <form action="/webapp/host/" method="POST">
+            <p>
+            <input name="hostname" placeholder="hostname">
+            </p>
+            <p>
+            <input name="ip" placeholder="ip">
+            </p>
+            <p>
+            <select name="group">
+                <option value="1">DBA</option>
+                <option value="2">业务运维</option>
+                <option value="3">应用运维</option>
+                <option value="4">开发运维</option>
+            </select>
+            </p>
+            <p>
+            <input type="submit" value="添加">
+            <span>
+                <font color="red">{{status}}</font>
+            </span>
+            </p>
+        </form>
+    </div>
+    <div class="list">
+        <h3>主机列表</h3>
+        <table border="1">
+            <tr>
+                <td>主机名</td>
+                <td>主机IP</td>
+                <td>组ID</td>
+                <td>主机所在组</td>
+            </tr>
+            {% for data in obj %}
+            <tr>
+                <td>{{data.hostname}}</td>
+                <td>{{data.ip}}</td>
+                <td>{{data.id}}</td>
+                <td>{{data.user_group.groupname}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

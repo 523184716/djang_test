@@ -1,7 +1,7 @@
 #coding:utf-8
 
 from django.conf.urls import  url
-from .views import  List,Add,Delete,Update,Query,AseetList,Login,Register
+from .views import  List,Add,Delete,Update,Query,AseetList,Login,Register,Host,Index
 
 urlpatterns = [
     # url(r'^$',views.List,name='index'),
@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^aseetList/$',AseetList),
     url(r'^login/$',Login),
     url(r'^register/$',Register),
+    url(r'^host/$',Host),
+    url(r'^index/$',Index),
 
 ]

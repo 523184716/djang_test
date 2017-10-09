@@ -2,10 +2,10 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,redirect
 from  django.http import  HttpResponse
 from  .forms import  RegisterForm
-from .models import  Asset,Userinfo
+from .models import  Asset,Userinfo,UserName,GroupName
 def List(request,id,name):
     print  name,id
     return  HttpResponse('login')
@@ -64,7 +64,9 @@ def Login(request):
             result = Userinfo.objects.filter(username=str(user),password=str(pwd)).count()
             print user,pwd
             if result==1:
-                return  AseetList(request)
+                #return  AseetList(request)
+                #return  render_to_response('index.html')
+                return  redirect('/webapp/index/')
             else:
                 return  render_to_response('login.html',{"status":"用户和密码错误"})
                 #ret["status"] = "用户和密码错误"
@@ -102,3 +104,34 @@ def Register(request):
     else:
         return render_to_response('login.html')
     """
+
+def Host(request):
+    ret = {'status':"",'data':"",'obj':""}
+    if request.method == "POST":
+        hostname = request.POST.get('hostname')
+        ipname = request.POST.get('ip')
+        groupid = request.POST.get('group')
+        is_empty = all([hostname,ipname])
+        print hostname,ipname,groupid,is_empty
+        if is_empty:
+            groupobj = GroupName.objects.get(id=groupid)
+            UserName.objects.create(hostname=hostname,ip=ipname,user_group=groupobj)
+        else:
+            ret['status'] = "hostname和ip不能为空"
+            return render_to_response('host.html',ret)
+
+    data = UserName.objects.all()
+    print data
+    ret['data'] = data
+    obj = UserName.objects.filter(user_group__id="1")
+    ret['obj'] = obj
+
+    print obj.query
+    print type(obj)
+    for itme in obj:
+        print type(itme)
+        print itme
+    return render_to_response('host.html',ret)
+
+def Index(request):
+    return render_to_response('index.html')

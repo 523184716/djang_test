@@ -41,3 +41,17 @@ class Temp(models.Model):
         (u'3', u'超级管理员'),
     )
     userType = models.CharField(max_length=20,choices=Gender_choice,default=1)
+
+class UserName(models.Model):
+    hostname = models.CharField(max_length=30)
+    ip = models.CharField(max_length=30)
+    #usertype = models.ForeignKey('UserType')
+    user_group = models.ForeignKey('GroupName')
+
+    def __unicode__(self):
+        temp = "当前username包含的对象(%s,%s)" % (self.hostname,self.ip)
+        return temp
+
+class GroupName(models.Model):
+    groupname = models.CharField(max_length=50)
+    #user_group = models.ManyToManyField('UserName')
