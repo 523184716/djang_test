@@ -1,7 +1,7 @@
 #coding:utf-8
 
 from django.conf.urls import  url
-from .views import  List,Add,Delete,Update,Query,AseetList,Login,Register,Host,Index,Many,FormLogin,TextModelForm
+from .views import  List,Add,Delete,Update,Query,AseetList,Login,Register,Host,Index,Many,FormLogin,TextModelForm,Ajax
 
 urlpatterns = [
     # url(r'^$',views.List,name='index'),
@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^many/$',Many),
     url(r'^loginform/$',FormLogin),
     url(r'^textmodelform/$',TextModelForm),
+    url(r'^ajax/$',Ajax),
 ]

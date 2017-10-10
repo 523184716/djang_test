@@ -58,5 +58,38 @@
             <font color="red">{{error}}</font>
         </span>
     </form>
+    <p>
+        <input id="name" type="text" />
+        <input type="button" value="ajax请求" onclick="doajax();"/> <!--onclick直接触发doajax函数-->
+        <span>
+            <font color="red">{{status}}</font>
+        </span>
+    </p>
+        <script src="/static/js/jquery.min.js"></script>  <!--引用jquery-->
+
+        <script type="text/javascript">   <!--编写Java脚本-->
+            function doajax() {               <!--定义一个触发动作的函数-->
+                var temp = $('#name').val();    <!--获取前面参数的至，赋值给temp，val没有填是通过从web界面获取-->
+                $.ajax({                          <!--正式开始ajax，$.ajax({});-->
+                    url:"/webapp/ajax/",
+                    type:"POST",
+                    data:{data:temp},
+                    success:function(arg){        <!--获取返回的变量-->
+                        console.log(arg);
+                        var data = jQuery.parseJSON(arg)     <!--转换返回的变量，类似字典的格式-->
+                        console.log(data.status)             <!--转换之后直接通过键值取值-->
+                        console.log(data.msg)
+                        console.log(data.data)
+                        console.log(temp)
+                        $('#name').val(data.msg)            <!--重新通过val指定data.msg赋值给#name-->
+                        console.log("success");
+                    },
+                    error:function(){
+                        console.log("failed")
+                    }
+                    }
+                );
+            }
+        </script>
 </body>
 </html>

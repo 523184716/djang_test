@@ -7,6 +7,7 @@ from  django.http import  HttpResponse
 from  .forms import  RegisterForm
 from . import forms
 from .models import  Asset,Userinfo,UserName,GroupName,ZabbixGroup,ZabbixUser
+import json
 def List(request,id,name):
     print  name,id
     return  HttpResponse('login')
@@ -181,7 +182,7 @@ def TextModelForm(request):
     ret['obj'] = obj
     if request.method == "POST":
         check_request = forms.Aloginmodelform(request.POST)
-        check_result = check_request.is_valid() 
+        check_result = check_request.is_valid()
         if check_result:
             pass
         else:
@@ -194,3 +195,18 @@ def TextModelForm(request):
             ret['obj'] = check_request
 
     return render_to_response('login.html', ret)
+
+def Ajax(request):
+    ret = {"status":""}
+    if request.method == "POST":
+        # result = request.POST.get('name')
+        # if result:
+
+        print request.POST
+        data = {'status':'ok','msg':'请求成功','data':[1,2,2,3,4]}
+        return  HttpResponse(json.dumps(data))
+        # else:
+        #     ret['status'] = "请填入数据"
+        #     return HttpResponse(json.dumps(ret))
+
+    return render_to_response('login.html',ret)
