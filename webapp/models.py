@@ -34,6 +34,9 @@ class Asset(models.Model):
     create_date = models.DateTimeField(auto_now=True)
     update_date = models.DateTimeField(auto_now=True)
 
+    ###图片上传属性
+    #img = models.ImageField(null=True, blank=True, upload_to="upload"
+
 class Temp(models.Model):
     Gender_choice =(
         (u'1',u'管理员'),
@@ -57,3 +60,8 @@ class GroupName(models.Model):
     #user_group = models.ManyToManyField('UserName')
 
 #class  UserContain(models.Model):
+
+class TestModleForm(models.Model):
+    username = models.CharField(max_length=50)
+    email = models.EmailField()
+    ipaddr = models.GenericIPAddressField()

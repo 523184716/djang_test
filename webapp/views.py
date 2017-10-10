@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.forms import utils
 from django.shortcuts import render
 from django.shortcuts import render_to_response,redirect
 from  django.http import  HttpResponse
 from  .forms import  RegisterForm
+from . import forms
 from .models import  Asset,Userinfo,UserName,GroupName,ZabbixGroup,ZabbixUser
 def List(request,id,name):
     print  name,id
@@ -116,6 +117,10 @@ def Host(request):
         if is_empty:
             groupobj = GroupName.objects.get(id=groupid)
             UserName.objects.create(hostname=hostname,ip=ipname,user_group=groupobj)
+            ##delete
+            #UserName.objects.filter(hostname=hostname).delete()
+            ##update
+            #UserName.objects.filter(hostname=hostname).update(ip='8.8.8.8')
         else:
             ret['status'] = "hostname和ip不能为空"
             return render_to_response('host.html',ret)
@@ -126,7 +131,7 @@ def Host(request):
     ###联表查询，user_group是第二个表的外键，连接第二张表的id做判断，小于3的全部查询返回
     #obj = UserName.objects.filter(user_group__id__lt="3")
     ###同上，联表查询，包含关系,values 去某个字段的值
-    obj = UserName.objects.filter(user_group__groupname__contains="业务").values('username')
+    obj = UserName.objects.filter(user_group__groupname__contains="业务").values('hostname')
     ret['obj'] = obj
 
     print obj.query
@@ -143,5 +148,49 @@ def Index(request):
 def Many(request):
     u1 = ZabbixUser.objects.get(id=1)
     g1 = ZabbixGroup.objects.get(id=2)
-    g1.relation.add(u1)
+    g1.relation.add(u1)    ###两种方式，第一个是有直接设置many to many字段的表添加另外一张
+    #ur.zabbixgroup_set.add(g1)    ###这种事没有那个字段的直接对象点那张表名，然后_set.add添加另外表的一个对象
+
+    ###图片上传属性
     return HttpResponse('ok')
+
+
+def FormLogin(request):
+    ret = {"obj":None,"error":""}
+    obj = forms.ALogin()
+    ret['obj'] = obj
+    if request.method == "POST":
+        check_request = forms.ALogin(request.POST)
+        check_result = check_request.is_valid()
+        if check_result:
+            pass
+        else:
+            errorobj = check_request.errors
+            print type(errorobj)
+
+            errorresult =  errorobj.as_data().values()[0][0][0]
+            print errorresult.encode("utf-8")
+            ret['error'] = errorresult
+            ret['obj'] = check_request
+
+    return render_to_response('login.html', ret)
+
+def TextModelForm(request):
+    ret = {"obj":None,"error":""}
+    obj = forms.Aloginmodelform()
+    ret['obj'] = obj
+    if request.method == "POST":
+        check_request = forms.Aloginmodelform(request.POST)
+        check_result = check_request.is_valid() 
+        if check_result:
+            pass
+        else:
+            errorobj = check_request.errors
+            print type(errorobj)
+
+            errorresult =  errorobj.as_data().values()[0][0][0]
+            print errorresult.encode("utf-8")
+            ret['error'] = errorresult
+            ret['obj'] = check_request
+
+    return render_to_response('login.html', ret)
